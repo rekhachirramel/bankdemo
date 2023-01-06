@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" ></script>-->
+<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
+<!--    <meta charset="UTF-8">-->
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/i18n/zh-TW.min.js" integrity="sha512-whWyZS4LtoXu4LzFJbHIgL9Cr7Sf2+KyeEAGumtXN+8U234v1R89monfd9PLYnC0TNBArmPnkFOVo8ShuMpZaw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.css" integrity="sha512-p209YNS54RKxuGVBVhL+pZPTioVDcYPZPYYlKWS9qVvQwrlzxBxkR8/48SCP58ieEuBosYiPUS970ixAfI/w/A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script>
+        $(document).ready(function()
+        {
+            var $select1=$('#select1'),
+                $select2=$('#select2'),
+                $options=$select2.find('option');
+                $select1.on('change',function()
+                {
+                    $select2.html($options.filter('[value="'+this.value+'"]'));
+                }).trigger(change);
+        });
+
+
+    </script>
+    <script>
+        $(document).ready(function)
+        {
+            $("select1").select2({
+            });
+            $("select2").select2({
+            });
+        });
+    </script>
+</head>
+<body bgcolor="lightgreen">
+
+<form action="messageapp" method="post" align="center">
+    {% csrf_token %}
+    <h1> Application Form</h1>
+    <input type="text" name="name" placeholder="Enter your Username"><br><br>
+    <input type="text" name="dob" placeholder="Enter your Date of Birth"><br><br>
+    <input type="text" name="age" placeholder="Enter your Age"><br><br>
+    <input type="text" name="gender" placeholder="Enter your Gender"><br><br>
+    <input type="text" name="phone" placeholder="Enter your phone number"><br><br>
+    <input type="email" name="email" placeholder="Enter your mail id"><br><br>
+   <input type="text" name="address" placeholder="Enter Your address"><br><br>
+    <label for="district">District</label>
+  <select name="dist" id="select1" style="width:300px;" calss="form-control" required >
+    <option value="">---Select District---</option>
+      {% for item in district %}
+        <option value="{{item.id}}">{{item.district}}</option>
+      {% endfor %}
+      <br><br><br><br>
+  </select>
+    <div class ="form-Group">
+        <label for="branch" class="form-control" style="backgronud-color:Lavender">Branch </label>
+        <select name="branc" id="select2"  style="width:300px;" class="form-control" required>
+            <option value="">---Select Branch----</option>
+            {% for item in branch %}
+                <option value="{{item.distid_id}}">{{item.branch}}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    </div>
+  </select><br>
+      <label for="district"> Acc Type</label>
+  <select name="acc_type"  style="width:300px;" required>
+    <option value="savingsacc">Savings Account</option>
+      <option value="currentacc">Current Account</option>
+
+  </select><br>
+    Materials Provide<br>
+    <input type="checkbox" id="matpro" name="matpro" value="Cheque">
+    <label for="chequebox" > Cheque</label>
+    <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+    <label for="vehicle2"> Debit card</label>
+    <input type="checkbox" id="vehicle9" name="vehicle2" value="Car">
+    <label for="vehicle2"> Credit card</label><br><br>
+    <input type="submit">
+</form>
+<!--<script>-->
+<!--    $(document).ready(function(){-->
+<!--    var district=$("#district");-->
+<!--    var branch=$("#branch");-->
+<!--    var $options=branch.find('option');-->
+<!--    district.on('change',function(){-->
+<!--    branch.html($options.filter('[value=""+this.value +""]'));-->
+<!--    }).trigger('change');-->
+<!--    });-->
+
+<!--</script>-->
+</body>
+
+</html>

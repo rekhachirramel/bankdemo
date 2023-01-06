@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body bgcolor="gray">
+
+<form action="register" method="post" align="center">
+    {% csrf_token %}
+    <h1> Registration Form</h1>
+    <input type="text" name="username" placeholder="Enter your Username"><br><br>
+    <input type="text" name="first_name" placeholder="Enter your firstname"><br><br>
+    <input type="text" name="last_name" placeholder="Enter your Last name"><br><br>
+    <input type="email" name="email" placeholder="Enter your Email Address"><br><br>
+    <input type="password" name="password" placeholder="Enter your Password"><br><br>
+    <input type="password" name="password1" placeholder="Confirm Password"><br><br>
+    <input type="submit">
+</form>
+
+</body>
+</html>
